@@ -1,6 +1,6 @@
 FROM 35.185.192.88:5001/alpine:3.4
 
-ENV MAVEN_VERSION="3.2.5" \
+ENV MAVEN_VERSION="3.3.9" \
     M2_HOME=/usr/lib/mvn
 
 RUN apk add --update wget && \
