@@ -12,7 +12,7 @@ RUN apk add --update wget && \
   apk del wget && \
   rm /tmp/* /var/cache/apk/*
 
-RUN apk add --update openjdk8-jre-base bash && \
+RUN apk add --update openjdk8-jre-base bash git && \
 	rm /var/cache/apk/*
 RUN git clone https://github.com/jainishshah17/orbitera-maven-example.git
 RUN cd orbitera-maven-example && mvn clean install
