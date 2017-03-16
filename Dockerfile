@@ -1,7 +1,19 @@
 FROM 35.185.192.88:5001/alpine:3.4
-RUN apk update
-RUN apk upgrade
-RUN apk add curl
-RUN curl -uadmin:AP4djjHLxSMGYCmQEwztsiVNXuC -O "http://35.185.192.88/artifactory/libs-release-local/composite-servlet3/composite-servlet3/composite-servlet3/composite-servlet3-composite-servlet3.war"
-RUN curl -uadmin:AP4djjHLxSMGYCmQEwztsiVNXuC -O "http://35.185.192.88/artifactory/libs-snapshot-local/org/jfrog/test/multi3/6.12-SNAPSHOT/multi3-6.12-20170315.220033-1.war"
+
+ENV MAVEN_VERSION="3.2.5" \
+    M2_HOME=/usr/lib/mvn
+
+RUN apk add --update wget && \
+  cd /tmp && \
+  wget "http://ftp.unicamp.br/pub/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
+  tar -zxvf "apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
+  mv "apache-maven-$MAVEN_VERSION" "$M2_HOME" && \
+  ln -s "$M2_HOME/bin/mvn" /usr/bin/mvn && \
+  apk del wget && \
+  rm /tmp/* /var/cache/apk/*
+
+RUN apk add --update openjdk8-jre-base bash && \
+	rm /var/cache/apk/*
+RUN git clone https://github.com/jainishshah17/orbitera-maven-example.git
+RUN cd orbitera-maven-example && mvn clean install
 CMD echo "Hello, Welcome to JFrog test drive"
