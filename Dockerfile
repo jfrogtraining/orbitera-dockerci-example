@@ -1,4 +1,4 @@
-FROM 35.185.192.88:5001/java:openjdk-8-alpine
+FROM 104.198.13.92:5001/java:openjdk-8-alpine
 
 ENV MAVEN_VERSION="3.3.9" \
     M2_HOME=/usr/lib/mvn
