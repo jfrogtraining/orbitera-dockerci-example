@@ -2,6 +2,8 @@
 
 echo "loging into docker private registry."
 docker login -u admin -p password $1:5001
+echo "copying hosts file"
+cp /etc/hosts .
 echo "building docker image."
 docker build --no-cache -t $1:5001/helloworld:$BUILD_NUMBER .
 echo "pushing docker image to private registry."
