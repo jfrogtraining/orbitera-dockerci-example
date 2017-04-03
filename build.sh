@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-echo "loging into docker private registry."
+echo "cloning git project"
+git clone https://github.com/jainishshah17/orbitera-maven-example.git
+echo "building maven project"
+cd orbitera-maven-example && mvn clean install
+cd ..
+
+echo "login into docker private registry."
 docker login -u admin -p password $1:5001
-echo "copying hosts file"
-cp /etc/hosts .
 echo "building docker image."
 docker build --no-cache -t $1:5001/helloworld:$BUILD_NUMBER .
 echo "pushing docker image to private registry."
