@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 echo "removing old code"
-rm -rf orbitera-maven-example
+sudo rm -rf orbitera-maven-example
 echo "cloning git project"
 git clone https://github.com/jainishshah17/orbitera-maven-example.git
 echo "building maven project"
+sudo chown jenkins:jenkins -R orbitera-maven-example
 cd orbitera-maven-example && mvn clean install
 cd ..
 
