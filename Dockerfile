@@ -15,7 +15,7 @@ RUN apk add --update wget && \
 RUN apk add --update openjdk8-jre-base bash git && \
 	rm /var/cache/apk/*
 COPY hosts /tmp/hosts
-RUN cp /tmp/hosts /etc/hosts
+RUN mv -f /tmp/hosts /etc/hosts
 RUN cat /etc/hosts
 RUN git clone https://github.com/jainishshah17/orbitera-maven-example.git
 RUN cd orbitera-maven-example && mv settings.xml /usr/lib/mvn/conf/settings.xml && mvn clean install
