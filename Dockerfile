@@ -15,9 +15,5 @@ RUN apk add --update wget && \
 RUN apk add --update openjdk8-jre-base bash git && \
 	rm /var/cache/apk/*
 
-#ADD orbitera-maven-example /src/orbitera-maven-example
-#COPY hosts /etc/hosts
-RUN echo "35.185.228.58    jfrog.local" >> /etc/hosts
-RUN git clone https://github.com/jainishshah17/orbitera-maven-example.git
-RUN cd orbitera-maven-example && mv settings.xml /usr/lib/mvn/conf/settings.xml && mvn clean install
+ADD orbitera-maven-example /src/orbitera-maven-example
 CMD echo "Hello, Welcome to JFrog test drive"
